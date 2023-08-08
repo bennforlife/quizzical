@@ -28,9 +28,15 @@ export default function App() {
       id: nanoid(),
       question: parse(item.question),
       correctAnswer: item.correct_answer,
-      answerChoices: shuffle([...item.incorrect_answers, item.correct_answer]),
+      answerChoices: parseArray(
+        shuffle([...item.incorrect_answers, item.correct_answer])
+      ),
       selectedAnswer: '',
     }))
+  }
+
+  function parseArray(array) {
+    return array.map((value) => parse(value))
   }
 
   function shuffle(items) {
