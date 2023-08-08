@@ -10,7 +10,7 @@ export default function Question({
   handleChange,
 }) {
   const answerList = answerChoices.map((answer, index) => (
-    <div key={nanoid()}>
+    <div className="answer" key={nanoid()}>
       <input
         type="radio"
         name={id}

@@ -1,7 +1,14 @@
 @import 'reset-css';
 
 html {
+  box-sizing: border-box;
   font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 body {
@@ -11,7 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100svh;
   font-family: 'Karla', sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -22,7 +29,9 @@ body {
 body::before {
   content: '';
   display: block;
-  width: 297px;
+  /* width: 20vw;
+  max-width: 297px; */
+  width: 200px;
   height: 270px;
   position: absolute;
   top: 0;
@@ -48,20 +57,25 @@ body::after {
 h1,
 h2 {
   font-weight: 700;
+  line-height: normal;
 }
 
 h1 {
   font-size: 6rem;
+  margin-bottom: 0.4em;
 }
 
 h2,
 h3 {
   font-size: 3rem;
-  margin-bottom: 0.5em;
+  line-height: normal;
+  margin-bottom: 0.8em;
 }
 
 #root {
   max-width: 80rem;
+  padding: 4rem;
+  z-index: 1;
 }
 
 a {
@@ -79,10 +93,10 @@ button {
   color: #fff;
   background-color: #4d5b9e;
   padding: 1em 3.6em;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   cursor: pointer;
   transition: border-color 0.25s;
-  border-radius: 3.1rem;
+  border-radius: 1em;
   border-color: transparent;
 }
 button:hover {
@@ -93,6 +107,14 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+button.button--large {
+  margin-top: 2em;
+}
+
+button.button--small {
+  font-size: 2rem;
+}
+
 .start-screen {
   display: flex;
   flex-direction: column;
@@ -100,14 +122,26 @@ button:focus-visible {
 }
 
 .question {
+  padding: 2.6rem 0;
   border-bottom: 1px solid #dbdef0;
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.4rem 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.answer {
+  flex-shrink: 0;
 }
 
 label {
   position: relative;
-  font-size: 2.4rem;
+  font-size: 2rem;
   padding: 0.2em 1em;
-  border-radius: 1.8rem;
+  border-radius: 0.6em;
   border: 0.2rem solid #4d5b9e;
   cursor: pointer;
 }
@@ -122,6 +156,10 @@ input[type='radio']:checked + label {
   color: #293264;
 }
 
+input[type='radio']:disabled + label {
+  cursor: default;
+}
+
 input[type='radio'] {
   position: absolute;
   opacity: 0;
@@ -133,7 +171,24 @@ label.correct-answer {
   border-color: #94d7a2;
 }
 
+input[type='radio'] + label.incorrect-answer {
+  opacity: 50%;
+}
+
 input[type='radio']:checked + label.incorrect-answer {
   background-color: #f8bcbc;
   border-color: #f8bcbc;
+  color: #293264;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2.6rem 0;
+}
+
+.score {
+  font-size: 2.2rem;
+  font-weight: 700;
 }

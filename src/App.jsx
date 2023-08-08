@@ -92,18 +92,23 @@ export default function App() {
     return (
       <div>
         <div className="questions">{questions}</div>
-        <div>
+        <div className="controls">
           {quizStatus.gameOver ? (
             <>
-              <span>
+              <span className="score">
                 You scored {score.total}/{score.questions} correct answers
               </span>
-              <button type="button" onClick={startGame}>
+              <button
+                className="button--small"
+                type="button"
+                onClick={startGame}
+              >
                 Play again
               </button>
             </>
           ) : (
             <button
+              className="button--small"
               type="button"
               onClick={() => {
                 checkAnswers()
@@ -121,7 +126,7 @@ export default function App() {
     <div className="start-screen">
       <h1>Quizzical</h1>
       <h3>Some description if needed</h3>
-      <button type="button" onClick={startGame}>
+      <button className="button--large" type="button" onClick={startGame}>
         Start quiz
       </button>
     </div>
