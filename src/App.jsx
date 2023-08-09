@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { nanoid } from 'nanoid'
+import { trackPromise, usePromiseTracker } from 'react-promise-tracker'
 import parse from 'html-react-parser'
+import LoadingIndicator from './LoadingIndicator'
 import Question from './Question'
 
 export default function App() {
@@ -10,6 +12,7 @@ export default function App() {
     gameOver: false,
   })
   const [score, setScore] = useState({ total: 0, questions: 0 })
+  const { promiseInProgress } = usePromiseTracker()
 
   useEffect(() => {
     async function getQuizData() {
@@ -20,7 +23,14 @@ export default function App() {
       setQuizData(processData(data.results))
     }
 
-    if (!quizStatus.gameOver) getQuizData()
+    const delayLoading = new Promise((resolve) => {
+      setTimeout(resolve, 1000)
+    })
+
+    if (!quizStatus.gameOver && quizStatus.started) {
+      trackPromise(delayLoading)
+      trackPromise(getQuizData())
+    }
   }, [quizStatus])
 
   function processData(data) {
@@ -93,6 +103,8 @@ export default function App() {
       handleChange={selectAnswer}
     />
   ))
+
+  if (promiseInProgress) return <LoadingIndicator />
 
   if (quizStatus.started)
     return (
