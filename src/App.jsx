@@ -143,7 +143,7 @@ export default function App() {
   return (
     <div className="start-screen">
       <h1>Quizzical</h1>
-      <h3>Some description if needed</h3>
+      <h3>Test your movie knowledge</h3>
       <button className="button--large" type="button" onClick={startGame}>
         Start quiz
       </button>
