@@ -67,7 +67,7 @@ h1 {
 
 h2,
 h3 {
-  font-size: 3rem;
+  font-size: clamp(2.3rem, 2vw + 1rem, 3rem);
   line-height: normal;
   margin-bottom: 0.8em;
 }
@@ -89,11 +89,12 @@ a:hover {
 
 button {
   font-family: inherit;
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 2vw + 1rem, 3rem);
+  /* font-size: 3rem; */
   color: #fff;
   background-color: #4d5b9e;
   padding: 1em 3.6em;
-  /* margin-top: 1em; */
+
   cursor: pointer;
   transition: border-color 0.25s;
   border-radius: 1em;
@@ -119,6 +120,7 @@ button.button--small {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .question {
@@ -191,4 +193,23 @@ input[type='radio']:checked + label.incorrect-answer {
 .score {
   font-size: 2.2rem;
   font-weight: 700;
+}
+
+@media (max-width: 790px) {
+  .controls {
+    flex-direction: column;
+    text-align: center;
+    row-gap: 2.6rem;
+  }
+}
+
+@media (max-width: 790px) and (orientation: portrait) {
+  .answers {
+    flex-direction: column;
+  }
+
+  label {
+    display: block;
+    text-align: center;
+  }
 }
